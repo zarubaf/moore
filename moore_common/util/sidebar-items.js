@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["HasDesc","Describes syntax nodes."],["HasSpan","Provides span information for syntax nodes."]]});

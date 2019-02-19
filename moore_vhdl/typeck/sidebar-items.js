@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TypeckContext","A context to typecheck things in."]],"trait":[["Typeck","Performs a type check."],["TypeckNode","Checks whether a node is of a given type."]]});

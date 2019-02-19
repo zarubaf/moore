@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["parse",""]],"mod":[["ast","This module implements an abstract syntax tree for VHDL. It is emitted by the parser."],["lexer","A VHDL lexer. This module implements lexical analysis of VHDL source files. It converts a stream of input bytes into a stream of language tokens such as identifiers, literals, and symbols."],["parser","A VHDL parser."]]});

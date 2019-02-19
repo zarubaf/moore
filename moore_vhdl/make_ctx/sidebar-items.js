@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MakeContext","A context within which compiler passes can be described."]]});

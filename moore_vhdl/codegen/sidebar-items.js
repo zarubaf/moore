@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["InstBuilder","An helper to build sequences of instructions."]],"trait":[["Codegen","Generates LLHD code."]]});

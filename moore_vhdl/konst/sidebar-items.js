@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Const","A constant value."],["Dir",""]],"struct":[["ConstEnum","A constant enumeration value."],["ConstFloat","A constant float value."],["ConstInt","A constant integer value."],["ConstRange","A constant range value."]],"type":[["ConstFloatRange",""],["ConstIntRange",""]]});

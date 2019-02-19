@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["EitherUnit",""],["Term","A term."]],"fn":[["term_to_expr","Map a term to a range."],["term_to_range","Map a term to a range."]],"struct":[["TermContext","A context within which termification can occur."]],"trait":[["DefSpecificTermContext",""],["ScopeSpecificTermContext",""]],"type":[["Subterm","A subterm."]]});

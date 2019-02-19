@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["parse_str",""],["write","Emit assembly for a module."],["write_string","Emit assembly for a module as string."]],"struct":[["Writer","Emits a module as human-readable assembly code that can be parsed again later."]]});

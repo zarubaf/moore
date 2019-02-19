@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["NodeId","A positive, small ID assigned to nodes in the AST and derived data structures. Used as a lightweight way to refer to individual nodes, e.g. during symbol table construction and name resolution."]]});

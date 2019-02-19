@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Def",""],["DefName",""]],"fn":[["def_name_from_primary_name",""]],"struct":[["Scope",""],["SymTbl",""]]});

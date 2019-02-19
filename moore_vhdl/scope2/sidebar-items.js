@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Def2","A definition."]],"struct":[["ScopeData","A scope."],["TypeVariantDef","An enumeration variant or physical unit."]],"trait":[["ScopeContext","Define names and perform name resolution."]]});

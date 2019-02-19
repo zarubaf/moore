@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DefsContext","A context to declare things in."]]});

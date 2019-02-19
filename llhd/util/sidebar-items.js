@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["IndirectMapIter","An iterator over a sequence of keys into a map. The iterator produces the items from the map, in the order in which their keys appear in the slice."]]});

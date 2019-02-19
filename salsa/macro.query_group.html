@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `query_group` macro in crate `salsa`."><meta name="keywords" content="rust, rustlang, rust-lang, query_group"><title>salsa::query_group - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc macro"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><div class="sidebar-elems"><p class='location'><a href='index.html'>salsa</a></p><script>window.sidebarCurrent = {name: 'query_group', ty: 'macro', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/salsa/lib.rs.html#541-823' title='goto source code'>[src]</a></span><span class='in-band'>Macro <a href='index.html'>salsa</a>::<wbr><a class="macro" href=''>query_group</a></span></h1><div class="docblock type-decl hidden-by-usual-hider"><div class="example-wrap"><pre class="rust macro">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">query_group</span> {
+    (
+        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>:<span class="ident">vis</span> <span class="kw">trait</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> $(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lt</span>:<span class="ident">lifetime</span><span class="op">&gt;</span>)<span class="op">*</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>:<span class="ident">vis</span> <span class="kw">trait</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> $(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">lt</span>:<span class="ident">lifetime</span><span class="op">&gt;</span>)<span class="op">*</span> : $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="op">*</span>
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        <span class="ident">attr</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trait_attr</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">headers</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>:<span class="ident">vis</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">query_trait</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">header</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">tokens</span>[{
+            $(
+                $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
+                <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_name</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_ty</span>:<span class="ident">ty</span>),<span class="op">*</span> $(,)<span class="kw-2">*</span>) <span class="op">-&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value_ty</span>:<span class="ident">ty</span> {
+                    <span class="kw">type</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">QueryType</span>:<span class="ident">ident</span>;
+                    $(<span class="ident">storage</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">tt</span>;)<span class="op">*</span> <span class="comment">// FIXME(rust-lang/rust#48075) should be `?`</span>
+                    $(<span class="kw">use</span> <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_path</span>:<span class="ident">path</span>;)<span class="op">*</span> <span class="comment">// FIXME(rust-lang/rust#48075) should be `?`</span>
+                }
+            )<span class="op">*</span>
+        }];
+        <span class="ident">lifetime</span>[];
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        <span class="ident">attr</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trait_attr</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">headers</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">v</span>:<span class="ident">vis</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">query_trait</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">header</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">tokens</span>[{
+            $(
+                $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
+                <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_name</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_ty</span>:<span class="ident">ty</span>),<span class="op">*</span> $(,)<span class="kw-2">*</span>) <span class="op">-&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value_ty</span>:<span class="ident">ty</span> {
+                    <span class="kw">type</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">QueryType</span>:<span class="ident">ident</span>;
+                    $(<span class="ident">storage</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">tt</span>;)<span class="op">*</span> <span class="comment">// FIXME(rust-lang/rust#48075) should be `?`</span>
+                    $(<span class="kw">use</span> <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_path</span>:<span class="ident">path</span>;)<span class="op">*</span> <span class="comment">// FIXME(rust-lang/rust#48075) should be `?`</span>
+                }
+            )<span class="op">*</span>
+        }];
+        <span class="ident">lifetime</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lt</span>:<span class="ident">lifetime</span>];
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">query_fn</span>[
+            <span class="ident">storage</span>(<span class="ident">input</span>);
+            <span class="ident">method_name</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>);
+            <span class="ident">fn_path</span>();
+            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">query_fn</span>[
+            <span class="ident">storage</span>(<span class="ident">input</span>);
+            <span class="ident">method_name</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>);
+            <span class="ident">fn_path</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_path</span>:<span class="ident">path</span>);
+            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">query_fn</span>[
+            <span class="ident">storage</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">ident</span>)<span class="kw-2">*</span>);
+            <span class="ident">method_name</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>);
+            <span class="ident">fn_path</span>();
+            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">query_fn</span>[
+            <span class="ident">storage</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">ident</span>)<span class="kw-2">*</span>);
+            <span class="ident">method_name</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>);
+            <span class="ident">fn_path</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_path</span>:<span class="ident">path</span>);
+            <span class="ident">db_trait</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DbTrait</span>:<span class="ident">path</span>);
+            <span class="ident">query_type</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">QueryType</span>:<span class="ident">ty</span>);
+            <span class="ident">key</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_name</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_ty</span>:<span class="ident">ty</span>);
+            <span class="ident">lifetime</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lts</span>:<span class="ident">lifetime</span>)<span class="kw-2">*</span>);
+        ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">query_fn</span>[
+            <span class="ident">storage</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">ident</span>)<span class="kw-2">*</span>);
+            <span class="ident">method_name</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">method_name</span>:<span class="ident">ident</span>);
+            <span class="ident">fn_path</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_path</span>:<span class="ident">path</span>);
+            <span class="ident">db_trait</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DbTrait</span>:<span class="ident">path</span>);
+            <span class="ident">query_type</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">QueryType</span>:<span class="ident">ty</span>);
+            <span class="ident">key</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_name</span>:<span class="ident">ident</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">key_ty</span>:<span class="ident">ty</span>),<span class="kw-2">*</span>);
+            <span class="ident">lifetime</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lts</span>:<span class="ident">lifetime</span>)<span class="kw-2">*</span>);
+        ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        <span class="ident">attr</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">headers</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">headers</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        <span class="ident">tokens</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">token</span>:<span class="ident">tt</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>];
+        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        <span class="comment">// Default case:</span>
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, ]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, <span class="ident">memoized</span>]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, <span class="ident">volatile</span>]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, <span class="ident">dependencies</span>]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, <span class="ident">input</span>]
+    ) <span class="op">=&gt;</span> { ... };
+    (
+        @<span class="ident">storage_ty</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">DB</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="self">Self</span>:<span class="macro-nonterminal">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">storage</span>:<span class="ident">tt</span>]
+    ) <span class="op">=&gt;</span> { ... };
+}</pre></div>
+</div><div class='docblock'><p>A macro that helps in defining the &quot;context trait&quot; of a given
+module.  This is a trait that defines everything that a block of
+queries need to execute, as well as defining the queries
+themselves that are exported for others to use.</p>
+<p>This macro declares the &quot;prototype&quot; for a group of queries. It will
+expand into a trait and a set of structs, one per query.</p>
+<p>For each query, you give the name of the accessor method to invoke
+the query (e.g., <code>my_query</code>, below), as well as its parameter
+types and the output type. You also give the name for a query type
+(e.g., <code>MyQuery</code>, below) that represents the query, and optionally
+other details, such as its storage.</p>
+<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>
+<p>The simplest example is something like this:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<span class="kw">trait</span> <span class="ident">TypeckDatabase</span> {
+    <span class="macro">query_group</span><span class="macro">!</span> {
+        <span class="doccomment">/// Comments or other attributes can go here</span>
+        <span class="kw">fn</span> <span class="ident">my_query</span>(<span class="ident">input</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
+            <span class="kw">type</span> <span class="ident">MyQuery</span>;
+            <span class="ident">storage</span> <span class="ident">memoized</span>; <span class="comment">// optional, this is the default</span>
+            <span class="kw">use</span> <span class="kw">fn</span> <span class="ident">path</span>::<span class="ident">to</span>::<span class="kw">fn</span>; <span class="comment">// optional, default is `my_query`</span>
+        }
+
+        <span class="doccomment">/// Queries can have any number of inputs; the key type will be</span>
+        <span class="doccomment">/// a tuple of the input types, so in this case `(u32, f32)`.</span>
+        <span class="kw">fn</span> <span class="ident">other_query</span>(<span class="ident">input1</span>: <span class="ident">u32</span>, <span class="ident">input2</span>: <span class="ident">f32</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
+            <span class="kw">type</span> <span class="ident">OtherQuery</span>;
+        }
+    }
+}</pre></div>
+<h1 id="storage-modes" class="section-header"><a href="#storage-modes">Storage modes</a></h1>
+<p>Here are the possible storage values for each query.  The default
+is <code>storage memoized</code>.</p>
+<h2 id="input-queries" class="section-header"><a href="#input-queries">Input queries</a></h2>
+<p>Specifying <code>storage input</code> will give you an <strong>input
+query</strong>. Unlike derived queries, whose value is given by a
+function, input queries are explicit set by doing
+<code>db.query(QueryType).set(key, value)</code> (where <code>QueryType</code> is the
+<code>type</code> specified for the query). Accessing a value that has not
+yet been set will panic. Each time you invoke <code>set</code>, we assume the
+value has changed, and so we will potentially re-execute derived
+queries that read (transitively) from this input.</p>
+<h2 id="derived-queries" class="section-header"><a href="#derived-queries">Derived queries</a></h2>
+<p>Derived queries are specified by a function.</p>
+<ul>
+<li><code>storage memoized</code> -- The result is memoized
+between calls.  If the inputs have changed, we will recompute
+the value, but then compare against the old memoized value,
+which can significantly reduce the amount of recomputation
+required in new revisions. This does require that the value
+implements <code>Eq</code>.</li>
+<li><code>storage volatile</code> -- indicates that the inputs are not fully
+captured by salsa. The result will be recomputed once per revision.</li>
+<li><code>storage dependencies</code> -- does not cache the value, so it will
+be recomputed every time it is needed. We do track the inputs, however,
+so if they have not changed, then things that rely on this query
+may be known not to have changed.</li>
+</ul>
+</div></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "salsa";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
